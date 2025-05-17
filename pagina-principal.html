@@ -1,11 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="css/pagina-styles.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
-    
+    <aside class="sidebar">
+        <header class="sidebar-header">
+            <img src="logo.png" alt="CodingNepal" class="header-logo">
+            <button class="sidebar-toggle">
+                <i class="fa-solid fa-caret-left"></i>
+            </button>
+        </header>
+
+        <div class="sidebar-content">
+            <!-- Search form-->
+            <form action="#" class="search-form">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" placeholder="pesquisar usuario">
+            </form>
+            
+            <!-- Menu List-->
+             <ul class="menu-list">
+                <li class="menu-item">
+                    <a href="#" class="menu-link active  menu-label">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <span class="menu-label">DashBoard</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#" class="menu-link menu-label">
+                        <i class="fa fa-file"></i> 
+                        <span class="menu-label">Propostas</span>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="fa fa-folder"></i>
+                        <span class="menu-label">Clientes</span>
+                    </a>
+                </li>      
+             </ul>
+        </div>
+
+        <!-- Sidebar footer -->
+        <div class="sidebar-footer">
+            <button class="theme-toggle">
+                <div class="theme-label">
+                    <i class="fa-solid fa-moon"></i>
+                    <p class="theme-text">Dark Mode</p>
+                </div>
+                <div class="theme-toggle-track">
+                    <div class="theme-toggle-indicator"></div>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <script src="JS/script.js"></script>
 </body>
 </html>
