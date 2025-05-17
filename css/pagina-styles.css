@@ -31,6 +31,17 @@ body.dark-theme {
   font-family: "Poppins", sans-serif;
 }
 
+body .dark-theme {
+  --color-text-primary: #F1F5F9;
+  --color-text-placeholder: #A6B7D2;
+  --color-bg-primary: #111827;
+  --color-bg-secondary: #3D4859;
+  --color-bg-sidebar: #1f2937;
+  --color-border-hr: #3B475C;
+  --color-hover-secondary: #48566a;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}
+
 body {
   background: var(--color-bg-primary);
 }
@@ -133,6 +144,11 @@ body {
   transition: 0.4 ease;
 }
 
+.sidebar.collapsed .sidebar-content .search-form:hover {
+  cursor: pointer;
+}
+
+.sidebar.collapsed .sidebar-content .search-form:hover,
 .sidebar-content .search-form:focus-within {
   background: var(--color-hover-secondary);
 
@@ -245,6 +261,10 @@ body {
     transition: opacity 0.4s 0.2s ease, background-color 0.3s ease;
 }
 
+body.dark-theme .theme-toggle .theme-toggle-track {
+  background: #696CFE;
+}
+
 .theme-toggle-track .theme-toggle-indicator {
   position: absolute;
   top: 3px;
@@ -254,5 +274,10 @@ body {
   background: #fff;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+body.dark-theme .theme-toggle-track .theme-toggle-indicator {
+  transform: translateX(24px);
 }
 
