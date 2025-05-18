@@ -11,15 +11,33 @@ async function fetchPropostas(page = 0) {
 
         propostas.forEach(proposta => {
             const tr = document.createElement('tr');
+
+            // Definir cor da fonte para estadoProposta
+            let estadoCor = '';
+            switch (proposta.estadoProposta) {
+                case 'PAGO':
+                    estadoCor = 'color: rgba(0, 128, 0, 0.6);'; // verde com opacidade
+                    break;
+                case 'NÃO_PAGO':
+                    estadoCor = 'color: rgba(255, 215, 0, 0.6);'; // amarelo claro com opacidade
+                    break;
+                case 'EM_AGUARDO':
+                    estadoCor = 'color: rgba(255, 140, 0, 0.6);'; // laranja forte com opacidade
+                    break;
+                default:
+                    estadoCor = 'color: rgba(128, 128, 128, 0.5);'; // cinza
+            }
+
             tr.innerHTML = `
                 <td>${proposta.dataDeProposta}</td>
-                <td>${proposta.valor}</td>
-                <td>${proposta.parcelas}</td>
+                <td><span style="color: green;">${proposta.valor}</span></td>
+                <td><span style="color: green;">${proposta.parcelas}</span></td>
                 <td>${proposta.nomeVendedor}</td>
                 <td>${proposta.nomeCliente}</td>
                 <td>${proposta.cpfCliente}</td>
-                <td>${proposta.estadoProposta}</td>
+                <td><span style="${estadoCor} font-weight: bold;">${proposta.estadoProposta}</span></td>
             `;
+
             propostasBody.appendChild(tr);
         });
 
@@ -38,7 +56,7 @@ async function fetchPropostas(page = 0) {
         currentPage = page;
 
     } catch (error) {
-        console.error('Erro ao buscar propostas:');
+        console.error('Erro ao buscar propostas:', error);
     }
 }
 
@@ -51,6 +69,5 @@ document.getElementById('prevPage').addEventListener('click', () => {
         fetchPropostas(currentPage - 1);
     }
 });
-
 
 window.onload = () => fetchPropostas();

@@ -20,18 +20,18 @@ updateThemeIcon();
 
 // Alterna a sidebar
 sidebarToggleBtn.forEach(btn => {
-    btn.addEventListener("click", ()=> {
+    btn.addEventListener("click", () => {
         sidebar.classList.toggle("collapsed");
         updateThemeIcon();
     });
 });
 
 searchForm.addEventListener("click", () => {
-    if(sidebar.classList.contains("collapsed")) {
+    if (sidebar.classList.contains("collapsed")) {
         sidebar.classList.remove("collapsed");
         searchForm.querySelector("input").focus();
     }
-})
+});
 
 // Alterna o tema
 themeToggleBtn.addEventListener("click", () => {
@@ -40,30 +40,53 @@ themeToggleBtn.addEventListener("click", () => {
     updateThemeIcon();
 });
 
-const mainContent = document.getElementById("main-content");
-const links = document.querySelectorAll(".menu-link");
+// ✅ Mantém só este bloco para lidar com troca de páginas
+const menuLinks = document.querySelectorAll('.menu-link');
 
-const loadPage = async (page) => {
-  try {
-    const response = await fetch(`pages/${page}.html`);
-    const html = await response.text();
-    mainContent.innerHTML = html;
-  } catch (error) {
-    mainContent.innerHTML = "<h2>Página não encontrada</h2>";
-  }
-};
+menuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
 
-// Atualiza classe ativa e carrega a página correspondente
-links.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+        menuLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
 
-    links.forEach(l => l.classList.remove("active"));
-    link.classList.add("active");
+        document.querySelectorAll('.page, .pageProposta, .pageClientes').forEach(page => {
+            page.style.display = 'none';
+        });
 
-    const label = link.textContent.trim().toLowerCase();
-    loadPage(label); // Ex: dashboard, propostas, clientes
-  });
+        const targetId = link.getAttribute('data-target');
+        const targetPage = document.getElementById(targetId);
+        if (targetPage) {
+            targetPage.style.display = 'block';
+
+            if (targetId === 'propostas') {
+                fetchPropostas();
+            } else if (targetId === 'clientes') {
+                document.getElementById('clientes').style.display = 'block';
+                carregarClientes();
+            }
+        }
+    });
 });
 
+// Botão "FECHAR COMPONENTE"
+const btnFecharPropostas = document.getElementById('btnFecharPropostas');
+if (btnFecharPropostas) {
+    btnFecharPropostas.addEventListener('click', () => {
+        const propostasPage = document.getElementById('propostas');
+        if (propostasPage) {
+            propostasPage.style.display = 'none';
+        }
+    });
+}
+
+const btnFecharClientes = document.getElementById('btnFecharClientes');
+if (btnFecharClientes) {
+    btnFecharClientes.addEventListener('click', () => {
+        const clientesPage = document.getElementById('clientes');
+        if (clientesPage) {
+            clientesPage.style.display = 'none';
+        }
+    });
+}
 

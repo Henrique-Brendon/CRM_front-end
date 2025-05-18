@@ -82,8 +82,11 @@
             <p>Conteúdo do Dashboard.</p>
         </div>
 
-        <div id="propostas" class="pageProposta">
-            <h1>Propostas</h1>
+        <div id="propostas" class="pageProposta" style="display:  none;">
+            <div class="container-propostas">
+                <h1>Propostas</h1>
+                <a id="btnFecharPropostas"><i class="fa-solid fa-x"></i></a>
+            </div>
             <div id="loading" class="loading">Carregando...</div>
             <div class="tabela-container">
                 <table id="propostasTable" class="styled-table" style="display: none;">
@@ -102,24 +105,59 @@
                 </table>
             </div>
 
-        <div class="pagination-container">
-        <div class="pagination-info" id="paginationInfo">Página 1</div>
-        <div class="pagination-buttons">
-            <button id="prevPage" class="pagination-button">
-            <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <span id="currentPage" class="pagination-number active">1</span>
-            <button id="nextPage" class="pagination-button">
-            <i class="fa-solid fa-chevron-right"></i>
-            </button>
-        </div>
+            <div class="pagination-container">
+                <div class="pagination-info" id="paginationInfo">Página 1</div>
+                <div class="pagination-buttons">
+                    <button id="prevPage" class="pagination-button">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <span id="currentPage" class="pagination-number active">1</span>
+                    <button id="nextPage" class="pagination-button">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div id="clientes" class="pageClientes" style="display: none;">
+        <div class="container-propostas">
             <h1>Clientes</h1>
-            <p>Conteúdo de clientes.</p>
+            <a id="btnFecharClientes"><i class="fa-solid fa-x"></i></a>
         </div>
+
+        <div id="loadingClientes" class="loading">Carregando...</div>
+
+        <div class="tabela-container">
+            <table id="clientesTable" class="styled-table" style="display: none;">
+            <thead>
+                <tr>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>Email</th>
+                <th>RG</th>
+                <th>CPF</th>
+                </tr>
+            </thead>
+            <tbody id="clientesBody"></tbody>
+            </table>
+        </div>
+
+        <div class="pagination-container">
+            <div class="pagination-info" id="paginationClientesInfo">Página 1</div>
+            <div class="pagination-buttons">
+            <button id="prevClientesPage" class="pagination-button">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span id="currentClientesPage" class="pagination-number active">1</span>
+            <button id="nextClientesPage" class="pagination-button">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            </div>
+        </div>
+        </div>
+
   </main>
+    <script src="JS/clientesView.js"></script>
     <script src="JS/propostasView.js"></script>
     <script src="JS/script.js"></script>
 </body>
