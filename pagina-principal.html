@@ -8,73 +8,119 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <link rel="stylesheet" href="css/pagina-styles.css">
+  <link rel="stylesheet" href="css/propostas-styles.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+ 
 
-  
 
 </head>
 <body>
 
-    <nav class="site-nav">
-        <button class="sidebar-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </nav>
-    <aside class="sidebar">
-        <header class="sidebar-header">
-            <img src="" alt="CodingNepal" class="header-logo">
+    <div>
+        <nav class="site-nav">
             <button class="sidebar-toggle">
-                <i class="fa-solid fa-caret-left"></i>
+                <i class="fa-solid fa-bars"></i>
             </button>
-        </header>
+        </nav>
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <img src="" alt="CodingNepal" class="header-logo">
+                <button class="sidebar-toggle">
+                    <i class="fa-solid fa-caret-left"></i>
+                </button>
+            </header>
 
-        <div class="sidebar-content">
-            <!-- Search form-->
-            <form action="#" class="search-form">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="search" placeholder="pesquisar usuario">
-            </form>
-            
-            <!-- Menu List-->
-             <ul class="menu-list">
-                <li class="menu-item">
-                    <a href="#" class="menu-link active  menu-label">
+            <div class="sidebar-content">
+                <!-- Search form-->
+                <form action="#" class="search-form">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" placeholder="pesquisar usuario">
+                </form>
+                
+                <!-- Menu List-->
+                <ul class="menu-list">
+                    <li class="menu-item">
+                    <a href="#" class="menu-link active" data-target="dashboard">
                         <i class="fa-solid fa-chart-simple"></i>
                         <span class="menu-label">DashBoard</span>
                     </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="#" class="menu-link menu-label">
-                        <i class="fa fa-file"></i> 
+                    </li>
+                    <li class="menu-item">
+                    <a href="#" class="menu-link" data-target="propostas">
+                        <i class="fa fa-file"></i>
                         <span class="menu-label">Propostas</span>
                     </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    </li>
+                    <li class="menu-item">
+                    <a href="#" class="menu-link" data-target="clientes">
                         <i class="fa fa-folder"></i>
                         <span class="menu-label">Clientes</span>
                     </a>
-                </li>      
-             </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sidebar footer -->
+            <div class="sidebar-footer">
+                <button class="theme-toggle">
+                    <div class="theme-label">
+                        <i class="fa-solid fa-moon theme-icon"></i>
+                        <p class="theme-text">Dark Mode</p>
+                    </div>
+                    <div class="theme-toggle-track">
+                        <div class="theme-toggle-indicator"></div>
+                    </div>
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <main class="main-content">
+        <div id="dashboard" class="page active" style="display:  none;">
+            <h1>Bem-vindo ao Dashboard</h1>
+            <p>Conteúdo do Dashboard.</p>
         </div>
 
-        <!-- Sidebar footer -->
-        <div class="sidebar-footer">
-            <button class="theme-toggle">
-                <div class="theme-label">
-                    <i class="fa-solid fa-moon theme-icon"></i>
-                    <p class="theme-text">Dark Mode</p>
-                </div>
-                <div class="theme-toggle-track">
-                    <div class="theme-toggle-indicator"></div>
-                </div>
+        <div id="propostas" class="pageProposta">
+            <h1>Propostas</h1>
+            <div id="loading" class="loading">Carregando...</div>
+            <div class="tabela-container">
+                <table id="propostasTable" class="styled-table" style="display: none;">
+                <thead>
+                    <tr>
+                    <th>Data da Proposta</th>
+                    <th>Valor</th>
+                    <th>Parcelas</th>
+                    <th>Vendedor</th>
+                    <th>Cliente</th>
+                    <th>CPF Cliente</th>
+                    <th>Estado da proposta</th>
+                    </tr>
+                </thead>
+                <tbody id="propostasBody"></tbody>
+                </table>
+            </div>
+
+        <div class="pagination-container">
+        <div class="pagination-info" id="paginationInfo">Página 1</div>
+        <div class="pagination-buttons">
+            <button id="prevPage" class="pagination-button">
+            <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span id="currentPage" class="pagination-number active">1</span>
+            <button id="nextPage" class="pagination-button">
+            <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
-    </aside>
+        </div>
 
+        <div id="clientes" class="pageClientes" style="display: none;">
+            <h1>Clientes</h1>
+            <p>Conteúdo de clientes.</p>
+        </div>
+  </main>
+    <script src="JS/propostasView.js"></script>
     <script src="JS/script.js"></script>
 </body>
 </html>

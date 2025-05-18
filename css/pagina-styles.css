@@ -44,6 +44,8 @@ body .dark-theme {
 
 body {
   background: var(--color-bg-primary);
+  display: flex;
+  height: 100vh;
 }
 
 .sidebar {
@@ -298,6 +300,8 @@ body.dark-theme .theme-toggle-track .theme-toggle-indicator {
   position: unset;
 }
 
+
+
 @media (max-width: 768px) {
   .site-nav {
     display: block;
@@ -318,5 +322,10 @@ body.dark-theme .theme-toggle-track .theme-toggle-indicator {
   }
 
 
+}
+
+.main-content {
+    width: 100%;
+    
 
 }
