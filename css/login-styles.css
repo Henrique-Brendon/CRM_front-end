@@ -1,3 +1,16 @@
+:root {
+  /* Light theme colors */
+  --color-text-primary: #1F2936;
+  --color-text-placeholder: #798EAE;
+  --color-bg-primary: #f9fafb;
+  --color-bg-secondary: #ECECFD;
+  --color-bg-sidebar: #FFFFFF;
+  --color-border-hr: #E2E8F0;
+  --color-hover-primary: #695CFE;
+  --color-hover-secondary: #e2e2fb;
+  --color-shadow: rgba(0, 0, 0, 0.05);
+}
+
 body {
   height: 100vh;
   background-image: url(https://ecorban.com/frontend/media/bg/bg-3.jpg);
@@ -20,15 +33,14 @@ main {
 }
 
 .pro {
-  color: gray;
+  color: var(--color-text-primary); /* cinza escuro */
 }
 
 .urban {
-  color: #f7941d; /* laranja RBAN */
+  color: #ff6f20; /* laranja mais suave */
 }
 
 .c-container {
-
   position: relative;
   display: flex;
   align-items: center;
@@ -38,45 +50,36 @@ main {
 
 .c {
   font-size: 140px;
-  color: gray;
+  color: var(--color-text-primary); /* cinza escuro */
   z-index: 1;
 }
 
 .play {
   position: absolute;
   bottom: 72px;
-  width: 0;
-  height: 0;
-  z-index: 2;
   left: 75%;
   transform: translateX(-20%);
   clip-path: polygon(0 0, 80% 50%, 0 100%);
-  background-color: #f7941d;
+  background-color: #ff6f20; /* laranja mais suave */
   width: 50px;
   height: 50px;
+  z-index: 2;
+}
+
+.custom-input {
+  background-color: var(--color-bg-primary); /* fundo claro */
+  border: 1px solid var(--color-border-hr); /* borda suave */
+  color: var(--color-text-primary); /* texto escuro */
+  width: 100%; /* largura total */
+  max-width: 300px; /* limite de largura */
+  font-size: 16px;
+  margin: 0 auto;
+  padding: 12px;
 }
 
 .custom-input:focus {
-  outline: none; /* Remove o contorno */
-  box-shadow: none; /* Remove qualquer sombra de foco */
-}
-
-.dividir{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-direction: row;
-  font-size: 1;
-  color: gray;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.linha {
-  width: 100%;
-  height: 1px;
-  background-color: gray;
+  outline: none;
+  box-shadow: 0 0 5px var(--color-hover-primary); /* sombra laranja ao focar */
 }
 
 .div-icon {
@@ -86,37 +89,44 @@ main {
   position: relative;
 }
 
-.icon-1{
-  color: gray;
+.icon-1 {
+  color: var(--color-text-primary);
   position: absolute;
   font-size: 1.5rem;
-  right: 10px;
+  left: 10px;
 }
 
-input, button {
+button {
   font-size: 16px;
+  background-color: var(--color-hover-primary); /* fundo azul */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  width: 100%; /* Largura 100% para alinhar com o input */
+  max-width: 300px; /* Garantir que tenha o mesmo tamanho do input */
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-hover-secondary); /* fundo ao passar o mouse */
 }
 
 @media (max-width: 450px) {
-
   main.container {
     padding: 10px;
   }
 
-  .c {
+  .logo {
     font-size: 60px;
+    margin-bottom: 10px;
   }
 
   .play {
     width: 20px;
     height: 20px;
     bottom: 32px;
-  }
-
-
-  .col-md-6 {
-    width: 100%;
-    padding: 10px;
   }
 
   .form-control {
@@ -129,27 +139,8 @@ input, button {
     font-size: 14px;
   }
 
-  .logo {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .div-icon i {
-    font-size: 18px;
-
   .my-3.dividir {
     margin-top: 10px;
     margin-bottom: 10px;
   }
-
-  .btn-outline-primary {
-    font-size: 14px;
-  }
-
-  .row.justify-content-center {
-    margin-right: 0;
-    margin-left: 0;
-  }
-
-}
 }
