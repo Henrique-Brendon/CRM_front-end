@@ -60,7 +60,7 @@ menuLinks.forEach(link => {
             targetPage.style.display = 'block';
 
             if (targetId === 'propostas') {
-                fetchPropostas();
+                //fetchPropostas();
             } else if (targetId === 'clientes') {
                 document.getElementById('clientes').style.display = 'block';
                 carregarClientes();

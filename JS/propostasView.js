@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://crm-back-end-crm-service.onrender.com';
+const API_BASE_URL = 'https://crm-back-end-39v9.onrender.com';
 
 let currentPage = 0;
 const pageSize = 10;
@@ -45,8 +45,15 @@ async function fetchPropostas(page = 0) {
     document.getElementById('currentPage').textContent = page + 1;
     document.getElementById('paginationInfo').textContent = `Página ${page + 1}`;
 
-    document.getElementById('loading')?.style.display = 'none';
-    document.getElementById('propostasTable')?.style.display = 'table';
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement) {
+      loadingElement.style.display = 'none';
+    }
+
+  const propostasTable = document.getElementById('propostasTable');
+  if (propostasTable) {
+    propostasTable.style.display = 'table';
+  }
 
     document.getElementById('prevPage').disabled = page === 0;
     document.getElementById('nextPage').disabled = propostas.length < pageSize;
@@ -154,11 +161,11 @@ document.querySelector('.formulario-cliente').addEventListener('submit', functio
       return response.json();
     })
     .then(data => {
-      console.log("Proposta salva com sucesso:", data);
-      alert("Proposta enviada com sucesso!");
+      //console.log("Proposta salva com sucesso:", data);
+      //alert("Proposta enviada com sucesso!");
     })
     .catch(error => {
-      console.error("Erro:", error.message);
-      alert("Erro ao enviar proposta.");
+      //console.error("Erro:", error.message);
+      //alert("Erro ao enviar proposta.");
     });
 });

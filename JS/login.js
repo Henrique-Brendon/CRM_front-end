@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     senha: senha
   };
 
-    fetch('https://crm-back-end-j1wr.onrender.com/usuario/login', {
+    fetch('https://usuario-login.onrender.com/usuario/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

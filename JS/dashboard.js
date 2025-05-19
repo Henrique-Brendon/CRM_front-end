@@ -1,4 +1,8 @@
-const baseURL = 'https://crm-back-end-crm-service.onrender.com/dashboard';
+const baseURL = 'https://crm-back-end-39v9.onrender.com/dashboard';
+
+let chartEstado = null;
+let chartVendedores = null;
+let chartFaixaValor = null;
 
 async function fetchData(url) {
     try {
@@ -18,7 +22,11 @@ async function renderChartEstado() {
     const values = Object.values(data);
 
     const ctx = document.getElementById('chartEstado').getContext('2d');
-    new Chart(ctx, {
+
+    // Destrói gráfico anterior se existir
+    if (chartEstado) chartEstado.destroy();
+
+    chartEstado = new Chart(ctx, {
         type: 'bar',
         data: {
             labels,
@@ -46,7 +54,11 @@ async function renderChartVendedores() {
     const values = data.map(item => item.totalVendido);
 
     const ctx = document.getElementById('chartVendedores').getContext('2d');
-    new Chart(ctx, {
+
+    // Destrói gráfico anterior se existir
+    if (chartVendedores) chartVendedores.destroy();
+
+    chartVendedores = new Chart(ctx, {
         type: 'bar',
         data: {
             labels,
@@ -75,7 +87,11 @@ async function renderChartFaixaValor() {
     const values = Object.values(data);
 
     const ctx = document.getElementById('chartFaixaValor').getContext('2d');
-    new Chart(ctx, {
+
+    // Destrói gráfico anterior se existir
+    if (chartFaixaValor) chartFaixaValor.destroy();
+
+    chartFaixaValor = new Chart(ctx, {
         type: 'pie',
         data: {
             labels,
@@ -107,7 +123,7 @@ document.querySelectorAll('.menu-link').forEach(link => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-    const isDashboardVisible = document.getElementById('dashboard').classList.contains('active');
+    const isDashboardVisible = document.getElementById('dashboard')?.classList.contains('active');
     if (isDashboardVisible) {
         loadDashboardCharts();
     }
@@ -122,20 +138,21 @@ function mostrarSecao(secao) {
         btn.classList.remove('active');
     });
 
-    if (secao === 'estado') {
-        document.getElementById('estado-section').style.display = 'block';
-    } else if (secao === 'vendedores') {
-        document.getElementById('vendedores-section').style.display = 'block';
-    } else if (secao === 'faixa') {
-        document.getElementById('faixa-section').style.display = 'block';
-    }
+    const sectionMap = {
+        estado: 'estado-section',
+        vendedores: 'vendedores-section',
+        faixa: 'faixa-section'
+    };
 
     const buttonMap = {
         estado: 0,
         vendedores: 1,
         faixa: 2
     };
+
+    document.getElementById(sectionMap[secao]).style.display = 'block';
     document.querySelectorAll('.dashboard-buttons button')[buttonMap[secao]].classList.add('active');
 }
 
+// Exibe a seção inicial
 mostrarSecao('estado');
