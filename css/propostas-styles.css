@@ -13,10 +13,13 @@
 
 
 .pageProposta {
+  display: flex;
+  align-items: center;
   padding: 20px;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: "Poppins", sans-serif;
+  height: 100vh;
 }
 
 .pageProposta h1 {

@@ -325,7 +325,209 @@ body.dark-theme .theme-toggle-track .theme-toggle-indicator {
 }
 
 .main-content {
-    width: 100%;
-    
+  width: 100%;
+}
 
+.novo-cliente-panel {
+  position: fixed;
+  top: 0;
+  right: -100%; /* muda de left para right */
+  width: 500px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2); /* sombra invertida */
+  transition: right 0.4s ease;
+  z-index: 1000;
+}
+
+.novo-cliente-panel.open {
+  right: 0; /* ativa o slide da direita para a esquerda */
+}
+
+.panel-content {
+  padding: 20px;
+  position: relative;
+}
+
+.fechar-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.vendedor-opcoes {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.vendedor-opcoes.hidden {
+  display: none;
+}
+
+.vendedor-opcoes button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+.formulario-cliente {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  background: var(--color-bg-sidebar);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px var(--color-shadow);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.grupo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.grupo-form label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--color-text-primary);
+}
+
+.grupo-form input,
+.grupo-form select {
+  padding: 0.7rem;
+  border: 1px solid var(--color-border-hr);
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: var(--color-text-primary);
+}
+
+.btn-cep {
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  background-color: var(--color-hover-primary);
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-cep:hover {
+  background-color: #574cfa;
+}
+
+.vendedor-selector {
+  grid-column: span 2;
+}
+
+.vendedor-dropdown {
+  position: relative;
+}
+
+.btn-selector {
+  padding: 0.6rem;
+  background-color: var(--color-hover-secondary);
+  border: 1px solid var(--color-border-hr);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.vendedor-opcoes {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid var(--color-border-hr);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px var(--color-shadow);
+  margin-top: 0.5rem;
+  z-index: 10;
+}
+
+.vendedor-opcoes.hidden {
+  display: none;
+}
+
+.vendedor-opcoes button {
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-text-primary);
+}
+
+.vendedor-opcoes button:hover {
+  background-color: var(--color-hover-secondary);
+}
+
+.vendedor-label {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  color: var(--color-text-placeholder);
+}
+
+.grupo-botoes {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.btn-submit {
+  padding: 0.8rem 1.2rem;
+  background-color: var(--color-hover-primary);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #574cfa;
+}
+
+.btn-fechar {
+  background: transparent;
+  border: none;
+  color: var(--color-text-placeholder);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.btn-novo-cliente {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background-color: var(--color-hover-primary);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px var(--color-shadow);
+}
+
+.btn-novo-cliente, .a-solid, .fa-user-plus i{
+  color: white;
+}
+
+.btn-novo-cliente:hover {
+  background-color: #574cfa;
+  transform: scale(1.03);
 }
