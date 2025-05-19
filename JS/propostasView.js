@@ -1,75 +1,66 @@
+const API_BASE_URL = 'https://crm-back-end-crm-service.onrender.com';
+
 let currentPage = 0;
 const pageSize = 10;
 
 async function fetchPropostas(page = 0) {
-    try {
-        const response = await fetch(`http://localhost:8081/proposta/paginas?page=${page}&size=${pageSize}&sort=id,desc`);
-        const propostas = await response.json();
+  try {
+    const response = await fetch(`${API_BASE_URL}/proposta/paginas?page=${page}&size=${pageSize}&sort=id,desc`);
+    const propostas = await response.json();
 
-        const propostasBody = document.getElementById('propostasBody');
-        propostasBody.innerHTML = '';
+    const propostasBody = document.getElementById('propostasBody');
+    propostasBody.innerHTML = '';
 
-        propostas.forEach(proposta => {
-            const tr = document.createElement('tr');
+    propostas.forEach(proposta => {
+      const tr = document.createElement('tr');
 
-            // Definir cor da fonte para estadoProposta
-            let estadoCor = '';
-            switch (proposta.estadoProposta) {
-                case 'PAGO':
-                    estadoCor = 'color: rgba(0, 128, 0, 0.6);'; // verde com opacidade
-                    break;
-                case 'NÃO_PAGO':
-                    estadoCor = 'color: rgba(255, 215, 0, 0.6);'; // amarelo claro com opacidade
-                    break;
-                case 'EM_AGUARDO':
-                    estadoCor = 'color: rgba(255, 140, 0, 0.6);'; // laranja forte com opacidade
-                    break;
-                default:
-                    estadoCor = 'color: rgba(128, 128, 128, 0.5);'; // cinza
-            }
+      let estadoCor = '';
+      switch (proposta.estadoProposta) {
+        case 'PAGO':
+          estadoCor = 'color: rgba(0, 128, 0, 0.6);';
+          break;
+        case 'NÃO_PAGO':
+          estadoCor = 'color: rgba(255, 215, 0, 0.6);';
+          break;
+        case 'EM_AGUARDO':
+          estadoCor = 'color: rgba(255, 140, 0, 0.6);';
+          break;
+        default:
+          estadoCor = 'color: rgba(128, 128, 128, 0.5);';
+      }
 
-            tr.innerHTML = `
-                <td>${proposta.dataDeProposta}</td>
-                <td><span style="color: green;">${proposta.valor}</span></td>
-                <td><span style="color: green;">${proposta.parcelas}</span></td>
-                <td>${proposta.nomeVendedor}</td>
-                <td>${proposta.nomeCliente}</td>
-                <td>${proposta.cpfCliente}</td>
-                <td><span style="${estadoCor} font-weight: bold;">${proposta.estadoProposta}</span></td>
-            `;
+      tr.innerHTML = `
+        <td>${proposta.dataDeProposta}</td>
+        <td><span style="color: green;">${proposta.valor}</span></td>
+        <td><span style="color: green;">${proposta.parcelas}</span></td>
+        <td>${proposta.nomeVendedor}</td>
+        <td>${proposta.nomeCliente}</td>
+        <td>${proposta.cpfCliente}</td>
+        <td><span style="${estadoCor} font-weight: bold;">${proposta.estadoProposta}</span></td>
+      `;
 
-            propostasBody.appendChild(tr);
-        });
+      propostasBody.appendChild(tr);
+    });
 
-        document.getElementById('currentPage').textContent = page + 1;
-        document.getElementById('paginationInfo').textContent = `Página ${page + 1}`;
+    document.getElementById('currentPage').textContent = page + 1;
+    document.getElementById('paginationInfo').textContent = `Página ${page + 1}`;
 
-        const loading = document.getElementById('loading');
-        if (loading) loading.style.display = 'none';
+    document.getElementById('loading')?.style.display = 'none';
+    document.getElementById('propostasTable')?.style.display = 'table';
 
-        const table = document.getElementById('propostasTable');
-        if (table) table.style.display = 'table';
+    document.getElementById('prevPage').disabled = page === 0;
+    document.getElementById('nextPage').disabled = propostas.length < pageSize;
 
-        document.getElementById('prevPage').disabled = page === 0;
-        document.getElementById('nextPage').disabled = propostas.length < pageSize;
-
-        currentPage = page;
-
-    } catch (error) {
-        console.error('Erro ao buscar propostas:', error);
-    }
+    currentPage = page;
+  } catch (error) {
+    console.error('Erro ao buscar propostas:', error);
+  }
 }
 
-document.getElementById('nextPage').addEventListener('click', () => {
-    fetchPropostas(currentPage + 1);
-});
-
+document.getElementById('nextPage').addEventListener('click', () => fetchPropostas(currentPage + 1));
 document.getElementById('prevPage').addEventListener('click', () => {
-    if (currentPage > 0) {
-        fetchPropostas(currentPage - 1);
-    }
+  if (currentPage > 0) fetchPropostas(currentPage - 1);
 });
-
 window.onload = () => fetchPropostas();
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -77,17 +68,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const painel = document.getElementById('novoClientePanel');
   const btnFechar = document.getElementById('fecharPanel');
 
-  btnNovoCliente.addEventListener('click', () => {
-    painel.classList.add('open');
-  });
-
-  btnFechar.addEventListener('click', () => {
-    painel.classList.remove('open');
-  });
+  btnNovoCliente.addEventListener('click', () => painel.classList.add('open'));
+  btnFechar.addEventListener('click', () => painel.classList.remove('open'));
 });
 
-
-let enderecoBuscado = {}; // Objeto global para armazenar endereço
+let enderecoBuscado = {};
 
 function formatarDataParaBR(dataISO) {
   if (!dataISO) return "";
@@ -97,11 +82,10 @@ function formatarDataParaBR(dataISO) {
 
 async function buscarEndereco() {
   const cep = document.getElementById("cep").value.replace(/\D/g, '');
-
   if (!cep) return;
 
   try {
-    const response = await fetch(`http://localhost:8081/cep/localizarEndereco?cep=${cep}`);
+    const response = await fetch(`${API_BASE_URL}/cep/localizarEndereco?cep=${cep}`);
     if (!response.ok) throw new Error("Endereço não encontrado.");
 
     const data = await response.json();
@@ -111,20 +95,17 @@ async function buscarEndereco() {
     document.getElementById("bairro").value = data.bairro;
     document.getElementById("endereco").value = data.endereco;
 
-    // Guarda os dados para uso posterior
     enderecoBuscado = {
       estado: data.estado,
       cidade: data.cidade,
       bairro: data.bairro,
       endereco: data.endereco
     };
-
   } catch (error) {
     alert("Erro ao buscar endereço: " + error.message);
   }
 }
 
-// Seleção de vendedor
 document.getElementById('btnSelecionarVendedor').addEventListener('click', function () {
   document.getElementById('vendedorOpcoes').classList.toggle('hidden');
 });
@@ -140,7 +121,6 @@ document.querySelectorAll('#vendedorOpcoes button').forEach(button => {
   });
 });
 
-// Envio da proposta
 document.querySelector('.formulario-cliente').addEventListener('submit', function (event) {
   event.preventDefault();
 
@@ -164,7 +144,7 @@ document.querySelector('.formulario-cliente').addEventListener('submit', functio
 
   const vendedorId = document.getElementById('vendedorSelecionado').value;
 
-  fetch(`http://localhost:8080/proposta/novaProposta/${vendedorId}`, {
+  fetch(`${API_BASE_URL}/proposta/novaProposta/${vendedorId}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(proposta)

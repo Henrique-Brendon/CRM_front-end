@@ -3,7 +3,7 @@ const clientesPageSize = 10;
 
 async function carregarClientes(page = 0) {
     try {
-        const response = await fetch(`http://localhost:8081/cliente/paginas?page=${page}&size=${clientesPageSize}&sort=id,desc`);
+        const response = await fetch(`https://crm-back-end-crm-service.onrender.com/cliente/paginas?page=${page}&size=${clientesPageSize}&sort=id,desc`);
         const clientes = await response.json();
 
         const clientesBody = document.getElementById('clientesBody');

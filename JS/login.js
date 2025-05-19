@@ -9,13 +9,14 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     senha: senha
   };
 
-  fetch('http://localhost:8082/usuario/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(dados)
-  })
+    fetch('https://crm-back-end-j1wr.onrender.com/usuario/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dados)
+    })
+
     .then(response => {
       if (!response.ok) {
         throw new Error('Falha na autenticação');
