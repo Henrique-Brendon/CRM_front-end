@@ -17,6 +17,11 @@ async function carregarClientes(page = 0) {
                 <td>${cliente.email}</td>
                 <td>${cliente.rg}</td>
                 <td>${cliente.cpf}</td>
+                <td>${cliente.estado}</td>
+                <td>${cliente.cidade}</td>
+                <td>${cliente.bairro}</td>
+                <td>${cliente.endereco}</td>
+                <td>${cliente.numCasa}</td>
             `;
             clientesBody.appendChild(tr);
         });
